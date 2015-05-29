@@ -1,7 +1,112 @@
-
 ;; Buffer based auto-complete for certain languages.
 (add-hook 'javascript-mode (lambda () (auto-complete-mode 1)))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
 
-;; JSX
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+
+;; Use js-mode indentation in js2-mode, I don't like js2-mode's indentation
+;;
+;; thanks http://mihai.bazon.net/projects/editing-javascript-with-emacs-js2-mode
+;; with my own modifications
+;;
+(defun my-js2-indent-function ()
+  (interactive)
+  (save-restriction
+    (widen)
+    (let* ((inhibit-point-motion-hooks t)
+           (parse-status (save-excursion (syntax-ppss (point-at-bol))))
+           (offset (- (current-column) (current-indentation)))
+           (indentation (js--proper-indentation parse-status))
+           node)
+
+      (save-excursion
+
+        (back-to-indentation)
+        ;; consecutive declarations in a var statement are nice if
+        ;; properly aligned, i.e:
+        ;;
+        ;; var foo = "bar",
+        ;;     bar = "foo";
+        (setq node (js2-node-at-point))
+        (when (and node
+                   (= js2-NAME (js2-node-type node))
+                   (= js2-VAR (js2-node-type (js2-node-parent node))))
+          (setq indentation ( 4 indentation))))
+
+      (indent-line-to indentation)
+      (when (> offset 0) (forward-char offset)))))
+
+(defun my-indent-sexp ()
+  (interactive)
+  (save-restriction
+    (save-excursion
+      (widen)
+      (let* ((inhibit-point-motion-hooks t)
+             (parse-status (syntax-ppss (point)))
+             (beg (nth 1 parse-status))
+             (end-marker (make-marker))
+             (end (progn (goto-char beg) (forward-list) (point)))
+             (ovl (make-overlay beg end)))
+        (set-marker end-marker end)
+        (overlay-put ovl 'face 'highlight)
+        (goto-char beg)
+        (while (< (point) (marker-position end-marker))
+          ;; don't reindent blank lines so we don't set the "buffer
+          ;; modified" property for nothing
+          (beginning-of-line)
+          (unless (looking-at "\\s-*$")
+            (indent-according-to-mode))
+          (forward-line))
+        (run-with-timer 0.5 nil '(lambda(ovl)
+                                   (delete-overlay ovl)) ovl)))))
+
+(defun my-js2-mode-hook ()
+  (require 'js)
+  (setq js-indent-level 2
+        indent-tabs-mode nil
+        c-basic-offset 2)
+  (c-toggle-auto-state 0)
+  (c-toggle-hungry-state 1)
+  (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
+  (define-key js2-mode-map [(meta control |)] 'cperl-lineup)
+  (define-key js2-mode-map [(meta control \;)]
+    '(lambda()
+       (interactive)
+       (insert "/* -----[ ")
+       (save-excursion
+         (insert " ]----- */"))
+       ))
+  (define-key js2-mode-map [(return)] 'newline-and-indent)
+  (define-key js2-mode-map [(backspace)] 'c-electric-backspace)
+  (define-key js2-mode-map [(control d)] 'c-electric-delete-forward)
+  (define-key js2-mode-map [(control meta q)] 'my-indent-sexp)
+  (if (featurep 'js2-highlight-vars)
+    (js2-highlight-vars-mode))
+  (message "My JS2 hook"))
+
+(add-hook 'js2-mode-hook 'my-js2-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+        ad-do-it)
+    ad-do-it))
+
+(flycheck-define-checker jsxhint-checker
+  "A JSX syntax and style checker based on JSXHint."
+
+  :command ("jsxhint" source)
+  :error-patterns
+  ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+  :modes (web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              ;; enable flycheck
+              (flycheck-select-checker 'jsxhint-checker)
+              (flycheck-mode))))
+
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)

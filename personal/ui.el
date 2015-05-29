@@ -1,5 +1,5 @@
 ;; Color Themes
-(load-theme 'gruvbox t)
+(disable-theme 'zenburn)
 
 (menu-bar-mode -1)
 
