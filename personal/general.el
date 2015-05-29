@@ -14,9 +14,6 @@
                             jsx-mode
                             editorconfig))
 
-;; Color Themes
-(load-theme 'gruvbox t)
-
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
 
@@ -25,6 +22,14 @@
 
 ;; Rainbow Delimiters everywhere!
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; No auto fill.
+(turn-off-auto-fill)
+(remove-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; Fix "Pinging *.id (Indonesia) problem.
+;; https://github.com/technomancy/emacs-starter-kit/issues/39
+(setq ido-use-filename-at-point nil)
 
 ;; Auto load paredit in LISP buffers
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -46,6 +51,8 @@
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -60,7 +67,7 @@
 
 (when window-system
   ;; GUI Customizations
-  (set-face-attribute 'default nil :font "Monaco-16")
+  (set-face-attribute 'default nil :font "Monaco-18")
   (tool-bar-mode -1))
 
 ;; Clojure stuff
@@ -80,3 +87,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Remove big white square in Aquamacs
+(setq visible-bell nil)
+(setq ring-bell-function (lambda nil (message "")))
