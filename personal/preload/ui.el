@@ -1,5 +1,4 @@
-;; Color Themes
-(disable-theme 'zenburn)
+(set 'prelude-theme 'purple-haze)
 
 (menu-bar-mode -1)
 
