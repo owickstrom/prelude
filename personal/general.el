@@ -1,17 +1,13 @@
-(prelude-require-packages '(starter-kit-lisp
-                            clojure-mode
+(prelude-require-packages '(clojure-mode
                             cider
                             undo-tree
                             markdown-mode+
-                            gruvbox-theme
-                            elixir-mode
                             rainbow-delimiters
                             git-gutter
                             less-css-mode
                             auto-complete
                             flycheck
                             emmet-mode
-                            jsx-mode
                             editorconfig))
 
 ;; Replace emacs undo system with undo-tree
@@ -27,20 +23,6 @@
 (turn-off-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Fix "Pinging *.id (Indonesia) problem.
-;; https://github.com/technomancy/emacs-starter-kit/issues/39
-(setq ido-use-filename-at-point nil)
-
-;; Auto load paredit in LISP buffers
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'rainbow-delimiters-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (require 'auto-complete-config)
@@ -49,31 +31,12 @@
 ;; Buffer based auto-complete for certain languages.
 (add-hook 'javascript-mode (lambda () (auto-complete-mode 1)))
 
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-(add-hook 'html-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
-
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; JSX
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
 (setq inhibit-startup-message t)
 
 (menu-bar-mode -1)
-
-(when window-system
-  ;; GUI Customizations
-  (set-face-attribute 'default nil :font "Monaco-18")
-  (tool-bar-mode -1))
-
-;; Clojure stuff
-(add-hook 'clojure-mode-hook 'paredit-mode)
-(add-hook 'clojure-mode-hook 'subword-mode)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -1,4 +1,4 @@
-(set 'prelude-theme 'purple-haze)
+(setq prelude-theme 'sanityinc-tomorrow-night)
 
 (menu-bar-mode -1)
 
