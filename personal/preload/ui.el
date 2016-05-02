@@ -4,5 +4,5 @@
 
 (when window-system
   ;; GUI Customizations
-  (set-face-attribute 'default nil :font "Monaco-16")
+  (set-face-attribute 'default nil :font "Source Code Pro-13")
   (tool-bar-mode -1))
