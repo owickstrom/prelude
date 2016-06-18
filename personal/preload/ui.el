@@ -4,5 +4,7 @@
 
 (when window-system
   ;; GUI Customizations
-  (set-face-attribute 'default nil :font "Source Code Pro-13")
-  (tool-bar-mode -1))
+  (setq-default line-spacing 0)
+  (set-face-attribute 'default nil :font "Ubuntu Mono-17")
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))

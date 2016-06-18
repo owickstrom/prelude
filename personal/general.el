@@ -9,7 +9,9 @@
                             auto-complete
                             flycheck
                             emmet-mode
-                            editorconfig))
+                            editorconfig
+                            haskell-mode
+                            flycheck-hdevtools))
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
