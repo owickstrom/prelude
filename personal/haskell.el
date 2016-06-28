@@ -6,10 +6,11 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+(add-hook 'haskell-mode-hook 'haskell-mode-stylish-buffer)
 
 (setq haskell-process-type 'stack-ghci)
 (setq haskell-process-path-ghci "stack")
-(setq haskell-process-args-ghci "ghci")
+(setq haskell-process-args-ghci "exec ghci")
 
 
 (custom-set-variables
