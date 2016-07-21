@@ -1,5 +1,5 @@
-;; specify path to the 'psc-ide' executable
-(require 'psc-ide)
+(prelude-require-packages '(purescript-mode
+                            psc-ide))
 
 (add-hook 'purescript-mode-hook
           (lambda ()

@@ -1,7 +1,4 @@
-(prelude-require-packages '(clojure-mode
-                            paredit
-                            cider
-                            undo-tree
+(prelude-require-packages '(undo-tree
                             markdown-mode+
                             rainbow-delimiters
                             git-gutter
@@ -10,8 +7,7 @@
                             flycheck
                             emmet-mode
                             editorconfig
-                            haskell-mode
-                            flycheck-hdevtools))
+			    color-theme-sanityinc-tomorrow))
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
