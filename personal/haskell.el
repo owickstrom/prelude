@@ -1,4 +1,6 @@
-(prelude-require-packages '(flycheck-hdevtools))
+(prelude-require-packages '(haskell-mode
+                            flycheck
+                            flycheck-hdevtools))
 
 (setq haskell-font-lock-symbols t)
 
