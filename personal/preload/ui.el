@@ -1,4 +1,4 @@
-(setq prelude-theme 'sanityinc-tomorrow-night)
+(setq prelude-theme nil)
 
 (menu-bar-mode -1)
 
