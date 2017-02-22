@@ -10,6 +10,9 @@
 			    color-theme-sanityinc-tomorrow
                             gruvbox-theme)
                           )
+
+(load-theme 'leuven)
+
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
 
