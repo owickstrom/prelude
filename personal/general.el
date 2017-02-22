@@ -3,12 +3,13 @@
                             rainbow-delimiters
                             git-gutter
                             less-css-mode
-                            auto-complete
+                            company
                             flycheck
                             emmet-mode
                             editorconfig
-			    color-theme-sanityinc-tomorrow))
-
+			    color-theme-sanityinc-tomorrow
+                            gruvbox-theme)
+                          )
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
 
@@ -22,13 +23,9 @@
 (turn-off-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
 
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
-(require 'auto-complete-config)
-(ac-config-default)
-
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'flycheck-color-mode-line-mode)
 
 (setq inhibit-startup-message t)
 

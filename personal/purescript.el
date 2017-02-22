@@ -1,9 +1,10 @@
 (prelude-require-packages '(purescript-mode
-                            psc-ide))
+                            psc-ide
+                            psci))
 
 (add-hook 'purescript-mode-hook
           (lambda ()
             (psc-ide-mode)
-            (company-mode)))
-
-(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
+            (company-mode)
+            (turn-on-purescript-indentation)
+            (turn-on-purescript-unicode-input-method)))
