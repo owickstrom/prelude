@@ -11,7 +11,7 @@
                             gruvbox-theme)
                           )
 
-(load-theme 'leuven)
+(load-theme 'sanityinc-tomorrow-night)
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
@@ -35,3 +35,5 @@
 ;; Remove big white square in Aquamacs
 (setq visible-bell nil)
 (setq ring-bell-function (lambda nil (message "")))
+
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
