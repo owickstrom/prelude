@@ -7,4 +7,5 @@
             (psc-ide-mode)
             (company-mode)
             (turn-on-purescript-indentation)
-            (turn-on-purescript-unicode-input-method)))
+            ;;(turn-on-purescript-unicode-input-method)
+            ))
