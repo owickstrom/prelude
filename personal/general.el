@@ -8,7 +8,8 @@
                             emmet-mode
                             editorconfig
 			    color-theme-sanityinc-tomorrow
-                            gruvbox-theme)
+                            gruvbox-theme
+                            flycheck-color-mode-line)
                           )
 
 (load-theme 'sanityinc-tomorrow-night)
