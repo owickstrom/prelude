@@ -7,10 +7,10 @@
                             flycheck
                             emmet-mode
                             editorconfig
-			    color-theme-sanityinc-tomorrow
+                            color-theme-sanityinc-tomorrow
                             gruvbox-theme
-                            flycheck-color-mode-line)
-                          )
+                            flycheck-color-mode-line
+                            langtool))
 
 (load-theme 'sanityinc-tomorrow-night)
 
