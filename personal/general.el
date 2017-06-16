@@ -10,7 +10,10 @@
                             color-theme-sanityinc-tomorrow
                             gruvbox-theme
                             flycheck-color-mode-line
-                            langtool))
+                            langtool
+                            rust-mode
+                            flycheck-rust
+                            racer))
 
 (load-theme 'sanityinc-tomorrow-night)
 
