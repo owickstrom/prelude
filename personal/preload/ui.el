@@ -6,14 +6,14 @@
 (pcase window-system
   ((guard (not 'window-system))
    (message "No window system, skipping GUI customization."))
-  (w32
+  (`x
    (setq-default line-spacing 0)
-   (set-frame-font "Consolas 12")
+   (set-frame-font "Fira Code 11")
    (tool-bar-mode -1)
    (scroll-bar-mode -1))
-  ('other
+  (`w32
    (setq-default line-spacing 0)
-   (set-frame-font "Fira Code 13")
+   (set-frame-font "Consolas 12")
    (tool-bar-mode -1)
    (scroll-bar-mode -1))
   )
