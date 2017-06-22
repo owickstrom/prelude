@@ -15,7 +15,7 @@
                             flycheck-rust
                             racer))
 
-(load-theme 'sanityinc-tomorrow-night)
+;; (load-theme 'sanityinc-tomorrow-night)
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
