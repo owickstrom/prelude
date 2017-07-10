@@ -8,7 +8,7 @@
    (message "No window system, skipping GUI customization."))
   (`x
    (setq-default line-spacing 0)
-   (set-frame-font "Fira Code 11")
+   (set-frame-font "Fira Code 10")
    (tool-bar-mode -1)
    (scroll-bar-mode -1))
   (`w32
