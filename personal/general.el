@@ -13,7 +13,8 @@
                             langtool
                             rust-mode
                             flycheck-rust
-                            racer))
+                            racer
+                            evil-magit))
 
 (load-theme 'gruvbox)
 
