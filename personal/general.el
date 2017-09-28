@@ -16,6 +16,9 @@
                             racer
                             evil-magit))
 
+(setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
+(setq exec-path (append exec-path '("~/.local/bin")))
+
 (load-theme 'gruvbox)
 
 ;; Replace emacs undo system with undo-tree
