@@ -1,10 +1,7 @@
 (prelude-require-packages '(haskell-mode
                             hindent
-                            intero
-                            flycheck))
-
-(setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
-(setq exec-path (append exec-path '("~/.local/bin")))
+                            flycheck
+                            flycheck-haskell))
 
 (setq haskell-font-lock-symbols t)
 (setq haskell-stylish-on-save t)
@@ -12,7 +9,6 @@
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
-;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 (custom-set-variables
  '(haskell-process-type 'auto)
@@ -33,7 +29,10 @@
      (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-mode-show-type-at)
      (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
+     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+     (define-key haskell-mode-map (kbd "M-p") 'haskell-goto-prev-error)
+     (define-key haskell-mode-map (kbd "M-n") 'haskell-goto-next-error)
+     ))
 
 (eval-after-load 'haskell-cabal
   '(progn
@@ -42,22 +41,9 @@
      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-(with-eval-after-load 'intero
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+(global-set-key (kbd "C-<f6>") 'haskell-process-reload-devel-main)
 
-(defun intero-change-directory ()
-  (interactive)
-  (intero-with-repl-buffer nil
-    (comint-simple-send
-     (get-buffer-process (current-buffer))
-     (concat ":cd " (read-directory-name "Directory to use in Intero REPL:")))))
-
-(defun intero-reload-and-run-main (&rest args)
-  (interactive)
-  (intero-with-repl-buffer nil
-    (comint-simple-send
-     (get-buffer-process (current-buffer))
-     (concat ":reload Main\n:main " (string-join args " ")))))
-
-(global-set-key (kbd "C-<f5>") 'intero-reload-and-run-main)
-(global-set-key (kbd "C-<f6>") 'intero-devel-reload)
+(set-face-attribute 'haskell-error-face nil
+                    :foreground nil
+                    :background nil
+                    :underline '(:color "red" :style wave))
