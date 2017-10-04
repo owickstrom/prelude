@@ -8,7 +8,7 @@
                             emmet-mode
                             editorconfig
                             color-theme-sanityinc-tomorrow
-                            gruvbox-theme
+                            cyberpunk-theme
                             flycheck-color-mode-line
                             langtool
                             rust-mode
@@ -19,7 +19,7 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
 
-(load-theme 'gruvbox)
+(load-theme 'cyberpunk)
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
