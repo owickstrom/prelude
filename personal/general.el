@@ -21,9 +21,11 @@
 
 (load-theme 'minimal)
 (set-face-italic 'font-lock-comment-face t)
-(set-face-italic 'font-lock-dock-face t)
+(set-face-italic 'font-lock-doc-face t)
 (set-face-attribute 'region nil :background "#468")
-(set-face-attribute 'whitespace-line nil :foreground nil :background "#600")
+(set-face-attribute 'whitespace-line nil
+                    :foreground "yellow"
+                    :background nil)
 
 
 ;; Replace emacs undo system with undo-tree
