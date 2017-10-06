@@ -19,10 +19,11 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
 
-(load-theme 'minimal-light)
+(load-theme 'minimal)
 (set-face-italic 'font-lock-comment-face t)
-(set-face-attribute 'region nil :background "#ccc")
-(set-face-attribute 'whitespace-line nil :foreground nil :background "#fdd")
+(set-face-italic 'font-lock-dock-face t)
+(set-face-attribute 'region nil :background "#468")
+(set-face-attribute 'whitespace-line nil :foreground nil :background "#600")
 
 
 ;; Replace emacs undo system with undo-tree
