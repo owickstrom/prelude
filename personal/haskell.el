@@ -9,10 +9,11 @@
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
+(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 
 (custom-set-variables
  '(haskell-process-type 'auto)
- '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-suggest-remove-import-lines nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t))
 
