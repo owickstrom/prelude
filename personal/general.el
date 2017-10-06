@@ -8,7 +8,7 @@
                             emmet-mode
                             editorconfig
                             color-theme-sanityinc-tomorrow
-                            cyberpunk-theme
+                            minimal-theme
                             flycheck-color-mode-line
                             langtool
                             rust-mode
@@ -19,7 +19,11 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
 
-(load-theme 'cyberpunk)
+(load-theme 'minimal-light)
+(set-face-italic 'font-lock-comment-face t)
+(set-face-attribute 'region nil :background "#ccc")
+(set-face-attribute 'whitespace-line nil :foreground nil :background "#fdd")
+
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
