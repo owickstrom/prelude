@@ -28,13 +28,21 @@
                     :background nil)
 
 ;; Idris Color Overrides
-(custom-set-faces
+(custom-theme-set-faces
+ 'minimal
  '(idris-semantic-function-face ((t (:foreground "#8a9"))))
  '(idris-semantic-bound-face ((t (:foreground "gray80" :italic t))))
  '(idris-semantic-data-face ((t (:foreground "#a98"))))
  '(idris-semantic-type-face ((t (:foreground "#89a"))))
  '(idris-semantic-implicit-face ((t (:foreground "gray70")))))
 
+(custom-theme-set-faces
+ 'minimal-light
+ '(idris-semantic-function-face ((t (:foreground "#465"))))
+ '(idris-semantic-bound-face ((t (:foreground "gray20" :italic t))))
+ '(idris-semantic-data-face ((t (:foreground "#654"))))
+ '(idris-semantic-type-face ((t (:foreground "#456"))))
+ '(idris-semantic-implicit-face ((t (:foreground "gray30")))))
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
