@@ -14,12 +14,14 @@
                             rust-mode
                             flycheck-rust
                             racer
-                            evil-magit))
+                            evil-magit
+                            idris-mode))
 
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
 
 (load-theme 'minimal)
+
 (set-face-italic 'font-lock-comment-face t)
 (set-face-italic 'font-lock-doc-face t)
 (set-face-attribute 'region nil :background "#468")
@@ -28,6 +30,14 @@
                     :background nil)
 
 ;; Idris Color Overrides
+;; (custom-theme-set-faces
+;;  'minimal-light
+;;  '(idris-semantic-function-face ((t (:foreground "#374"))))
+;;  '(idris-semantic-bound-face ((t (:foreground "gray20" :italic t))))
+;;  '(idris-semantic-data-face ((t (:foreground "#743"))))
+;;  '(idris-semantic-type-face ((t (:foreground "#347"))))
+;;  '(idris-semantic-implicit-face ((t (:foreground "gray30")))))
+
 (custom-theme-set-faces
  'minimal
  '(idris-semantic-function-face ((t (:foreground "#8a9"))))
@@ -35,14 +45,6 @@
  '(idris-semantic-data-face ((t (:foreground "#a98"))))
  '(idris-semantic-type-face ((t (:foreground "#89a"))))
  '(idris-semantic-implicit-face ((t (:foreground "gray70")))))
-
-(custom-theme-set-faces
- 'minimal-light
- '(idris-semantic-function-face ((t (:foreground "#465"))))
- '(idris-semantic-bound-face ((t (:foreground "gray20" :italic t))))
- '(idris-semantic-data-face ((t (:foreground "#654"))))
- '(idris-semantic-type-face ((t (:foreground "#456"))))
- '(idris-semantic-implicit-face ((t (:foreground "gray30")))))
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
