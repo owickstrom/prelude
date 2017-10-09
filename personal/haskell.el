@@ -3,8 +3,6 @@
                             flycheck
                             flycheck-haskell))
 
-(setq haskell-font-lock-symbols t)
-(setq haskell-stylish-on-save t)
 
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
@@ -15,7 +13,10 @@
  '(haskell-process-type 'auto)
  '(haskell-process-suggest-remove-import-lines nil)
  '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t))
+ '(haskell-process-log t)
+ '(haskell-font-lock-symbols t)
+ '(haskell-stylish-on-save t)
+ '(haskell-tags-on-save t))
 
 (eval-after-load 'interactive-haskell-mode
   '(progn
