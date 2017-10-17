@@ -1,3 +1,4 @@
+(setq prelude-guru nil)
 (setq prelude-theme nil)
 
 (menu-bar-mode 1)
@@ -7,8 +8,8 @@
   ((guard (not 'window-system))
    (message "No window system, skipping GUI customization."))
   (`x
-   (setq-default line-spacing 0.1)
-   (set-frame-font "Ubuntu Mono 12")
+   (setq-default line-spacing 0)
+   (set-frame-font "Latin Modern Mono Prop 13")
    (tool-bar-mode -1)
    (scroll-bar-mode -1))
   (`w32

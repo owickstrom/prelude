@@ -5,11 +5,9 @@
                             less-css-mode
                             company
                             flycheck
+                            gruvbox-theme
                             emmet-mode
                             editorconfig
-                            color-theme-sanityinc-tomorrow
-                            minimal-theme
-                            flycheck-color-mode-line
                             langtool
                             rust-mode
                             flycheck-rust
@@ -20,31 +18,39 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
 
-(load-theme 'minimal)
+(load-theme 'gruvbox-light-medium)
+
+(defconst gruvbox-dark1 "#3c3836")
+(defconst gruvbox-neutral_red     "#fb4934")
+(defconst gruvbox-neutral_green   "#b8bb26")
+(defconst gruvbox-neutral_yellow  "#fabd2f")
+(defconst gruvbox-neutral_blue    "#83a598")
+(defconst gruvbox-neutral_purple  "#d3869b")
+(defconst gruvbox-neutral_aqua    "#8ec07c")
+(defconst gruvbox-neutral_orange  "#fe8019")
+
+(custom-theme-set-faces
+ 'gruvbox-light-medium
+
+ '(markdown-pre-face ((t (:family "Latin Modern Mono"))))
+ '(markdown-code-face ((t (:family "Latin Modern Mono"))))
+
+ `(sml/col-number ((t (:foreground ,gruvbox-dark1))))
+ `(sml/folder ((t (:foreground ,gruvbox-dark1))))
+ `(sml/global ((t (:foreground ,gruvbox-dark1))))
+ `(sml/minor-modes ((t (:foreground ,gruvbox-dark1))))
+
+ `(idris-semantic-function-face ((t (:foreground ,gruvbox-neutral_blue))))
+ `(idris-semantic-bound-face ((t (:foreground ,gruvbox-neutral_purple :italic t))))
+ `(idris-semantic-data-face ((t (:foreground ,gruvbox-neutral_red))))
+ `(idris-semantic-type-face ((t (:foreground ,gruvbox-neutral_orange))))
+ `(idris-semantic-implicit-face ((t (:foreground ,gruvbox-neutral_aqua))))
+ )
 
 (set-face-italic 'font-lock-comment-face t)
 (set-face-italic 'font-lock-doc-face t)
-(set-face-attribute 'region nil :background "#468")
-(set-face-attribute 'whitespace-line nil
-                    :foreground "yellow"
-                    :background nil)
-
-;; Idris Color Overrides
-;; (custom-theme-set-faces
-;;  'minimal-light
-;;  '(idris-semantic-function-face ((t (:foreground "#374"))))
-;;  '(idris-semantic-bound-face ((t (:foreground "gray20" :italic t))))
-;;  '(idris-semantic-data-face ((t (:foreground "#743"))))
-;;  '(idris-semantic-type-face ((t (:foreground "#347"))))
-;;  '(idris-semantic-implicit-face ((t (:foreground "gray30")))))
-
-(custom-theme-set-faces
- 'minimal
- '(idris-semantic-function-face ((t (:foreground "#8a9"))))
- '(idris-semantic-bound-face ((t (:foreground "gray80" :italic t))))
- '(idris-semantic-data-face ((t (:foreground "#a98"))))
- '(idris-semantic-type-face ((t (:foreground "#89a"))))
- '(idris-semantic-implicit-face ((t (:foreground "gray70")))))
+; (set-face-attribute 'region nil :background "#468")
+; (set-face-attribute 'whitespace-empty nil :background nil)
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
@@ -61,7 +67,6 @@
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook #'flycheck-color-mode-line-mode)
 
 (setq inhibit-startup-message t)
 
@@ -70,3 +75,8 @@
 (setq ring-bell-function (lambda nil (message "")))
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+
+(evil-set-initial-state
+ 'term-mode 'emacs)
+
+(require 'lockstep)
