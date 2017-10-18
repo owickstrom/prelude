@@ -29,6 +29,14 @@
 (defconst gruvbox-neutral_aqua    "#8ec07c")
 (defconst gruvbox-neutral_orange  "#fe8019")
 
+(defconst gruvbox-faded_red       "#9d0006")
+(defconst gruvbox-faded_green     "#79740e")
+(defconst gruvbox-faded_yellow    "#b57614")
+(defconst gruvbox-faded_blue      "#076678")
+(defconst gruvbox-faded_purple    "#8f3f71")
+(defconst gruvbox-faded_aqua      "#427b58")
+(defconst gruvbox-faded_orange    "#af3a03")
+
 (custom-theme-set-faces
  'gruvbox-light-medium
 
@@ -40,20 +48,21 @@
  `(sml/global ((t (:foreground ,gruvbox-dark1))))
  `(sml/minor-modes ((t (:foreground ,gruvbox-dark1))))
 
- `(idris-semantic-function-face ((t (:foreground ,gruvbox-neutral_blue))))
- `(idris-semantic-bound-face ((t (:foreground ,gruvbox-neutral_purple :italic t))))
- `(idris-semantic-data-face ((t (:foreground ,gruvbox-neutral_red))))
- `(idris-semantic-type-face ((t (:foreground ,gruvbox-neutral_orange))))
- `(idris-semantic-implicit-face ((t (:foreground ,gruvbox-neutral_aqua))))
+ `(idris-semantic-function-face ((t (:foreground ,gruvbox-faded_green))))
+ `(idris-semantic-bound-face ((t (:foreground ,gruvbox-faded_aqua :italic t))))
+ `(idris-semantic-data-face ((t (:foreground ,gruvbox-faded_orange))))
+ `(idris-semantic-type-face ((t (:foreground ,gruvbox-faded_blue))))
+ `(idris-semantic-implicit-face ((t (:foreground ,gruvbox-faded_purple))))
  )
 
 (set-face-italic 'font-lock-comment-face t)
 (set-face-italic 'font-lock-doc-face t)
-; (set-face-attribute 'region nil :background "#468")
-; (set-face-attribute 'whitespace-empty nil :background nil)
 
 ;; Replace emacs undo system with undo-tree
 (global-undo-tree-mode)
+
+;; Disable prelude's diff-hl-mode.
+(global-diff-hl-mode -1)
 
 ;; Don't show weird fringe characters for empty lines.
 (setq-default indicate-empty-lines nil)
