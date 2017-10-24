@@ -9,7 +9,7 @@
    (message "No window system, skipping GUI customization."))
   (`x
    (setq-default line-spacing 0)
-   (set-frame-font "Latin Modern Mono Prop 13")
+   (set-frame-font "Inconsolata 13")
    (tool-bar-mode -1)
    (scroll-bar-mode -1))
   (`w32
