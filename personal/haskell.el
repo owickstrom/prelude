@@ -4,6 +4,10 @@
                             flycheck-haskell))
 
 
+(setq-default flycheck-disabled-checkers
+              '('haskell-ghc
+                'haskell-stack-ghc))
+
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
