@@ -1,20 +1,9 @@
 (setq prelude-guru nil)
 (setq prelude-theme nil)
 
-(menu-bar-mode 1)
-
-;; GUI Customizations
-(pcase window-system
-  ((guard (not 'window-system))
-   (message "No window system, skipping GUI customization."))
-  (`x
-   (setq-default line-spacing 0)
-   (set-frame-font "Inconsolata 13")
-   (tool-bar-mode -1)
-   (scroll-bar-mode -1))
-  (`w32
-   (setq-default line-spacing 0)
-   (set-frame-font "Consolas 12")
-   (tool-bar-mode -1)
-   (scroll-bar-mode -1))
-  )
+(when window-system
+  (setq-default line-spacing 0)
+  (set-default-font "Iosevka Term 10")
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
