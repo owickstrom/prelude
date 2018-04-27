@@ -4,13 +4,13 @@
                             flycheck-haskell))
 
 
-(setq-default flycheck-disabled-checkers
-              '('haskell-ghc
-                'haskell-stack-ghc))
+(setq flycheck-disabled-checkers
+      '('haskell-ghc
+        'haskell-stack-ghc))
 
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook #'hindent-mode)
+;; (add-hook 'haskell-mode-hook #'hindent-mode)
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 
 (custom-set-variables
@@ -20,7 +20,8 @@
  '(haskell-process-log t)
  '(haskell-font-lock-symbols t)
  '(haskell-stylish-on-save t)
- '(haskell-tags-on-save t))
+ '(haskell-tags-on-save nil)
+ )
 
 (eval-after-load 'interactive-haskell-mode
   '(progn
@@ -47,7 +48,28 @@
      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-(global-set-key (kbd "C-<f6>") 'haskell-process-reload-devel-main)
+;; Use Nix binaries.
+
+(setq haskell-process-wrapper-function
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+
+;; Work around for GHC 8.2.x incompatible error parsing in
+;; haskell-mode.
+
+(setq haskell-process-args-ghci
+      '("-ferror-spans" "-fshow-loaded-modules"))
+
+(setq haskell-process-args-cabal-repl
+      '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))
+
+(setq haskell-process-args-stack-ghci
+      '("--ghci-options=-'ferror-spans -fshow-loaded-modules'"
+        "--no-build" "--no-load"))
+
+(setq haskell-process-args-cabal-new-repl
+      '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))
+
+;; Squiggly lines for errors.
 
 (set-face-attribute 'haskell-error-face nil
                     :foreground nil

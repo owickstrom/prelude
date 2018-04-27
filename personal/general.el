@@ -5,10 +5,8 @@
                             less-css-mode
                             company
                             flycheck
-                            gruvbox-theme
                             emmet-mode
                             editorconfig
-                            langtool
                             rust-mode
                             flycheck-rust
                             racer
@@ -48,4 +46,4 @@
 (evil-set-initial-state
  'term-mode 'emacs)
 
-(require 'lockstep)
+(global-set-key (kbd "<f11>") 'prelude-fullscreen)
