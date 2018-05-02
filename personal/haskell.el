@@ -4,13 +4,12 @@
                             flycheck-haskell))
 
 
-(setq flycheck-disabled-checkers
-      '('haskell-ghc
-        'haskell-stack-ghc))
+(add-to-list 'flycheck-disabled-checkers 'haskell-ghc)
+(add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
 
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-;; (add-hook 'haskell-mode-hook #'hindent-mode)
+(add-hook 'haskell-mode-hook #'hindent-mode)
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 
 (custom-set-variables
