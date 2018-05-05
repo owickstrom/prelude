@@ -3,3 +3,8 @@
                             ))
 
 (load-theme 'minimal)
+
+(custom-theme-set-faces
+ 'minimal
+ '(font-lock-comment-face ((t (:foreground "#777777"))))
+ '(region ((t (:background "#555555")))))
