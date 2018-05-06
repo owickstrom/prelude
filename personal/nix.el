@@ -1,5 +1,6 @@
-(prelude-require-packages '(nix-mode
-                            nix-sandbox
+(prelude-require-packages '(
+                            ;; nix-mode
+                            ;; nix-sandbox
                             ))
 
 ;; (setq flycheck-command-wrapper-function

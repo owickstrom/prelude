@@ -49,8 +49,8 @@
 
 ;; Use Nix binaries.
 
-(setq haskell-process-wrapper-function
-        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+;; (setq haskell-process-wrapper-function
+      ;; (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
 ;; Work around for GHC 8.2.x incompatible error parsing in
 ;; haskell-mode.
@@ -62,8 +62,9 @@
       '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))
 
 (setq haskell-process-args-stack-ghci
-      '("--ghci-options=-'ferror-spans -fshow-loaded-modules'"
-        "--no-build" "--no-load"))
+      '("--ghci-options=-ferror-spans -fshow-loaded-modules"
+        "--no-build"
+        "--no-load"))
 
 (setq haskell-process-args-cabal-new-repl
       '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))

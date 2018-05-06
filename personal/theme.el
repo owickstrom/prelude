@@ -2,6 +2,12 @@
                             atom-one-dark-theme
                             ))
 
+(load-theme 'minimal-light)
+
+(custom-theme-set-faces
+ 'minimal-light
+ '(region ((t (:background "#ccddff")))))
+
 (load-theme 'minimal)
 
 (custom-theme-set-faces
