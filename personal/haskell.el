@@ -66,8 +66,9 @@
         "--no-build"
         "--no-load"))
 
-(setq haskell-process-args-cabal-new-repl
-      '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))
+;; (setq haskell-process-args-cabal-new-repl
+;;       '("--ghc-options=-ferror-spans"
+;;         "--ghc-options=-fshow-loaded-modules"))
 
 ;; Squiggly lines for errors.
 
