@@ -13,7 +13,7 @@
 (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 
 (custom-set-variables
- '(haskell-process-type 'auto)
+ '(haskell-process-type 'cabal-new-repl)
  '(haskell-process-suggest-remove-import-lines nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
@@ -49,8 +49,8 @@
 
 ;; Use Nix binaries.
 
-;; (setq haskell-process-wrapper-function
-      ;; (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+(setq haskell-process-wrapper-function
+      (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
 ;; Work around for GHC 8.2.x incompatible error parsing in
 ;; haskell-mode.
@@ -62,13 +62,14 @@
       '("--ghc-options='-ferror-spans -fshow-loaded-modules'"))
 
 (setq haskell-process-args-stack-ghci
-      '("--ghci-options=-ferror-spans -fshow-loaded-modules"
+      '("--ghci-options=-ferror-spans"
+        "--ghci-options=-fshow-loaded-modules"
         "--no-build"
         "--no-load"))
 
-;; (setq haskell-process-args-cabal-new-repl
-;;       '("--ghc-options=-ferror-spans"
-;;         "--ghc-options=-fshow-loaded-modules"))
+(setq haskell-process-args-cabal-new-repl
+      '("--ghc-options=-ferror-spans"
+        "--ghc-options=-fshow-loaded-modules"))
 
 ;; Squiggly lines for errors.
 

@@ -2,15 +2,17 @@
                             atom-one-dark-theme
                             ))
 
-(load-theme 'minimal-light)
+;; (load-theme 'minimal-light)
 
-(custom-theme-set-faces
- 'minimal-light
- '(region ((t (:background "#ccddff")))))
+;; (custom-theme-set-faces
+;;  'minimal-light
+;;  '(region ((t (:background "#ccddff")))))
 
-(load-theme 'minimal)
+;; (load-theme 'minimal)
 
-(custom-theme-set-faces
- 'minimal
- '(font-lock-comment-face ((t (:foreground "#777777"))))
- '(region ((t (:background "#555555")))))
+;; (custom-theme-set-faces
+;;  'minimal
+;;  '(font-lock-comment-face ((t (:foreground "#777777"))))
+;;  '(region ((t (:background "#555555")))))
+
+(load-theme 'atom-one-dark)
