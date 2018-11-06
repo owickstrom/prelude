@@ -40,8 +40,6 @@
      (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
      (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-     (define-key haskell-mode-map (kbd "M-p") 'haskell-goto-prev-error)
-     (define-key haskell-mode-map (kbd "M-n") 'haskell-goto-next-error)
      ))
 
 (eval-after-load 'haskell-cabal

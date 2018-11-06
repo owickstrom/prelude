@@ -35,6 +35,9 @@
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(define-key flycheck-mode-map (kbd "M-p") 'flycheck-previous-error)
+(define-key flycheck-mode-map (kbd "M-n") 'flycheck-next-error)
+
 (setq inhibit-startup-message t)
 
 ;; Remove big white square in Aquamacs
