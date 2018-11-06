@@ -1,16 +1,21 @@
 (prelude-require-packages '(minimal-theme
-                            atom-one-dark-theme
+                            atom-dark-theme
                             ))
 
-(load-theme 'minimal-light)
+(setq use-minimal nil)
 
-(custom-theme-set-faces
- 'minimal-light
- '(region ((t (:background "#ccddff")))))
+(when use-minimal
+  (load-theme 'minimal-light)
 
-(load-theme 'minimal)
+  (custom-theme-set-faces
+   'minimal-light
+   '(region ((t (:background "#ccddff")))))
 
-(custom-theme-set-faces
- 'minimal
- '(font-lock-comment-face ((t (:foreground "#777777"))))
- '(region ((t (:background "#555555")))))
+  (load-theme 'minimal)
+
+  (custom-theme-set-faces
+   'minimal
+   '(font-lock-comment-face ((t (:foreground "#777777"))))
+   '(region ((t (:background "#555555"))))))
+
+(load-theme 'atom-one-dark)

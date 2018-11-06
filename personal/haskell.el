@@ -6,11 +6,14 @@
 
 (add-to-list 'flycheck-disabled-checkers 'haskell-ghc)
 (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
-
-;; (add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook #'hindent-mode)
-(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (flycheck-haskell-setup)
+            ; (haskell-doc-mode)
+            (haskell-indentation-mode t)
+            (haskell-auto-insert-module-template t)
+            (setq projectile-tags-command "fast-tags -Re --exclude=.stack-work --exclude=dist-newstyle .")
+            ))
 
 (custom-set-variables
  '(haskell-process-type 'auto)
@@ -18,8 +21,9 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-font-lock-symbols t)
- '(haskell-stylish-on-save t)
+ '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save nil)
+ '(hindent-process-path "brittany")
  )
 
 (eval-after-load 'interactive-haskell-mode
