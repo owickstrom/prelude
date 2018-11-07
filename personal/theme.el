@@ -2,9 +2,9 @@
                             atom-dark-theme
                             ))
 
-(setq use-minimal nil)
+(load-theme 'atom-one-dark)
 
-(when use-minimal
+(when nil
   (load-theme 'minimal-light)
 
   (custom-theme-set-faces
@@ -17,5 +17,3 @@
    'minimal
    '(font-lock-comment-face ((t (:foreground "#777777"))))
    '(region ((t (:background "#555555"))))))
-
-(load-theme 'atom-one-dark)
