@@ -7,8 +7,6 @@
                             flycheck
                             emmet-mode
                             editorconfig
-                            rust-mode
-                            flycheck-rust
                             racer
                             evil-magit
                             idris-mode))
