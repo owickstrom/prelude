@@ -32,9 +32,6 @@
 (turn-off-auto-fill)
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 (define-key flycheck-mode-map (kbd "M-p") 'flycheck-previous-error)
 (define-key flycheck-mode-map (kbd "M-n") 'flycheck-next-error)
 
@@ -50,3 +47,4 @@
  'term-mode 'emacs)
 
 (global-set-key (kbd "<f11>") 'prelude-fullscreen)
+(global-unset-key (kbd "s-n"))
