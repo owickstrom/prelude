@@ -7,16 +7,18 @@
 
 (add-to-list 'flycheck-disabled-checkers 'haskell-ghc)
 (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
+
 (add-hook 'haskell-mode-hook
           (lambda ()
+            (flycheck-mode)
             (flycheck-haskell-setup)
             ; (haskell-doc-mode)
-            (haskell-indentation-mode t)
-            (haskell-auto-insert-module-template t)
+            (haskell-indentation-mode 1)
+            (haskell-auto-insert-module-template)
             (setq projectile-tags-command "fast-tags -Re --exclude=.stack-work --exclude=dist-newstyle .")
             ))
 
-(add-hook 'haskell-mode-hook (lambda () (hindent-mode 1)))
+(add-hook 'haskell-mode-hook #'hindent-mode)
 
 (custom-set-variables
  '(haskell-process-type 'auto)
@@ -27,12 +29,15 @@
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save nil)
  '(hindent-process-path "brittany")
- )
+ '(hindent-reformat-buffer-on-save t))
 
 (eval-after-load 'interactive-haskell-mode
   '(progn
      (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-     (define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)))
+     (define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+     (define-key interactive-haskell-mode-map (kbd "C-p") 'haskell-interactive-mode-history-previous)
+     (define-key interactive-haskell-mode-map (kbd "C-n") 'haskell-interactive-mode-history-next)
+     ))
 
 (eval-after-load 'haskell-mode
   '(progn
