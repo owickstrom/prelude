@@ -1,8 +1,9 @@
 (prelude-require-packages '(minimal-theme
                             atom-dark-theme
+                            gruvbox-theme
                             ))
 
-(load-theme 'atom-one-dark)
+(load-theme 'gruvbox)
 
 (when nil
   (load-theme 'minimal-light)

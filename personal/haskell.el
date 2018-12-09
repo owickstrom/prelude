@@ -15,6 +15,8 @@
             ; (haskell-doc-mode)
             (haskell-indentation-mode 1)
             (haskell-auto-insert-module-template)
+            (setq haskell-compile-cabal-build-command "cabal v2-build -O0")
+            (setq haskell-compile-cabal-build-alt-command "cabal v2-run tasty -O0 -- --color=always")
             (setq projectile-tags-command "fast-tags -Re --exclude=.stack-work --exclude=dist-newstyle .")
             ))
 
@@ -25,11 +27,12 @@
  '(haskell-process-suggest-remove-import-lines nil)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
- '(haskell-font-lock-symbols t)
- '(haskell-stylish-on-save nil)
+
+ '(haskell-font-lock-symbols nil)
+ '(haskell-stylish-on-save t)
  '(haskell-tags-on-save nil)
  '(hindent-process-path "brittany")
- '(hindent-reformat-buffer-on-save t))
+ '(hindent-reformat-buffer-on-save nil))
 
 (eval-after-load 'interactive-haskell-mode
   '(progn
@@ -41,26 +44,23 @@
 
 (eval-after-load 'haskell-mode
   '(progn
-     (define-key haskell-mode-map (kbd "C-c C-l")
-       'haskell-process-load-or-reload)
-     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-     (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-mode-show-type-at)
-     (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+     ;; (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+     ;; (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+     ;; (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-mode-show-type-at)
+     ;; (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+     (define-key haskell-mode-map (kbd "C-c c") 'haskell-compile)
      ))
 
 (eval-after-load 'haskell-cabal
   '(progn
-     (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-     (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-     (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+     ;; (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+     ;; (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)))
 
 ;; Use Nix binaries.
 
-(setq haskell-process-wrapper-function
-      (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+;; (setq haskell-process-wrapper-function
+;;       (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
 ;; Work around for GHC 8.2.x incompatible error parsing in
 ;; haskell-mode.

@@ -3,6 +3,7 @@
                             rainbow-delimiters
                             git-gutter
                             less-css-mode
+                            helm-git-grep
                             company
                             flycheck
                             emmet-mode
@@ -40,9 +41,12 @@
 (setq ring-bell-function (lambda nil (message "")))
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-normal-state-map (kbd "C-c C-u") 'universal-argument)
 
 (evil-set-initial-state
  'term-mode 'emacs)
 
 (global-set-key (kbd "<f11>") 'prelude-fullscreen)
 (global-unset-key (kbd "s-n"))
+
+(define-key prelude-mode-map (kbd "C-c g") 'helm-git-grep)
