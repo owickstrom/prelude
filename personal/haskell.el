@@ -15,8 +15,8 @@
             ; (haskell-doc-mode)
             (haskell-indentation-mode 1)
             (haskell-auto-insert-module-template)
-            (setq haskell-compile-cabal-build-command "cabal v2-build -O0")
-            (setq haskell-compile-cabal-build-alt-command "cabal v2-run tasty -O0 -- --color=always")
+            (setq haskell-compile-cabal-build-command "cabal new-build -O0")
+            (setq haskell-compile-cabal-build-alt-command "TASTY_COLOR=always cabal new-test -O0")
             (setq projectile-tags-command "fast-tags -Re --exclude=.stack-work --exclude=dist-newstyle .")
             ))
 
@@ -49,13 +49,16 @@
      ;; (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-mode-show-type-at)
      ;; (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
      (define-key haskell-mode-map (kbd "C-c c") 'haskell-compile)
+     (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
      ))
 
 (eval-after-load 'haskell-cabal
   '(progn
      ;; (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
      ;; (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)))
+     (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-compile)
+     (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
+     ))
 
 ;; Use Nix binaries.
 
@@ -87,3 +90,10 @@
                     :foreground nil
                     :background nil
                     :underline '(:color "red" :style wave))
+
+(defun stack2cabal ()
+  "Prepare a stack project for use with cabal."
+  (interactive)
+  (when-let
+      (default-directory (locate-dominating-file default-directory "stack.yaml"))
+    (call-process "stack2cabal")))
