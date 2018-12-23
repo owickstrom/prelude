@@ -5,5 +5,5 @@
   (setq mac-command-modifier 'super))
 
 ;; Enable ligatures
-(when (fboundp mac-auto-operator-composition-mode)
+(when (fboundp 'mac-auto-operator-composition-mode)
   (mac-auto-operator-composition-mode))

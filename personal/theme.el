@@ -3,7 +3,7 @@
                             gruvbox-theme
                             ))
 
-(load-theme 'gruvbox)
+(load-theme 'atom-one-dark)
 
 (when nil
   (load-theme 'minimal-light)
