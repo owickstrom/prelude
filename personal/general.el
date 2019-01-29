@@ -10,7 +10,9 @@
                             editorconfig
                             racer
                             evil-magit
-                            idris-mode))
+                            idris-mode
+                            direnv
+                            ))
 
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
@@ -44,25 +46,12 @@
 (define-key evil-normal-state-map (kbd "C-c C-u") 'universal-argument)
 
 (evil-set-initial-state
- 'term-mode 'emacs)
+ 'term-mode 'emacs
+ 'interactive-haskell-mode 'emacs)
 
 (global-set-key (kbd "<f11>") 'prelude-fullscreen)
 (global-unset-key (kbd "s-n"))
 
 (define-key prelude-mode-map (kbd "C-c g") 'helm-git-grep)
 
-(defun my-reload-dir-locals-for-current-buffer ()
-  "reload dir locals for the current buffer"
-  (interactive)
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer)))
-
-(defun my-reload-dir-locals-for-all-buffer-in-this-directory ()
-  "For every buffer with the same `default-directory` as the
-current buffer's, reload dir-locals."
-  (interactive)
-  (let ((dir default-directory))
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when (equal default-directory dir))
-        (my-reload-dir-locals-for-current-buffer)))))
+(direnv-mode)
