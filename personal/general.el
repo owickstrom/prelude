@@ -47,7 +47,8 @@
 
 (evil-set-initial-state
  'term-mode 'emacs
- 'interactive-haskell-mode 'emacs)
+ 'interactive-haskell-mode 'emacs
+ 'haskell-error-mode 'emacs)
 
 (global-set-key (kbd "<f11>") 'prelude-fullscreen)
 (global-unset-key (kbd "s-n"))
