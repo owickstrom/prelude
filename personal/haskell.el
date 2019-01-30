@@ -8,6 +8,9 @@
 (add-to-list 'flycheck-disabled-checkers 'haskell-ghc)
 (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
 
+(setq-default haskell-compile-cabal-build-command "cabal v2-build all")
+(setq-default haskell-compile-cabal-build-alt-command "TASTY_pattern=\"\" cabal v2-test all")
+
 (add-hook 'haskell-mode-hook
           (lambda ()
             (flycheck-mode)
@@ -15,8 +18,6 @@
                 ; (haskell-doc-mode)
                 (haskell-indentation-mode 1)
                 (haskell-auto-insert-module-template)
-                (setq haskell-compile-cabal-build-command "cabal v2-build all")
-                (setq haskell-compile-cabal-build-alt-command "TASTY_pattern=\"\" cabal v2-test all")
                 (setq projectile-tags-command "fast-tags -Re --exclude=.stack-work --exclude=dist-newstyle .")
                 ))
 

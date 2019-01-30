@@ -44,11 +44,9 @@
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "C-c C-u") 'universal-argument)
+(define-key evil-normal-state-map (kbd "C-c C--") 'negative-argument)
 
-(evil-set-initial-state
- 'term-mode 'emacs
- 'interactive-haskell-mode 'emacs
- 'haskell-error-mode 'emacs)
+(evil-set-initial-state 'term-mode 'emacs)
 
 (global-set-key (kbd "<f11>") 'prelude-fullscreen)
 (global-unset-key (kbd "s-n"))
